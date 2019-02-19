@@ -54,12 +54,10 @@
 ;Funcion que retorna el primer elemento de una lista que cumpla con el predicado
 ;predicado,lista -> booleano or elemento
 (define list-index
-  (lambda (predicado lista) (contar predicado lista 0)))
-
-(define contar (lambda (predicado lista num)
-    (cond  ((empty? lista) #F)
-      ((predicado (first lista)) num )
-          (else (contar predicado (rest lista) (+ num 1))))))
+  (lambda (predicado lista)
+    (cond  ((empty? lista) #f)
+      ((predicado (first lista)) (first lista))
+          (else (list-index predicado (rest lista))))))
   
 (define x (list 2 4 6))
 (define y (list 4 8))
