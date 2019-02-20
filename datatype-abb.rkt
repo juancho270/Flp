@@ -126,15 +126,13 @@
                 [(and (arbol-hoja? nodo) (< (arbol-numero nodo) num)) #true ]
                 [else (and (< (arbol-numero nodo) num) (ordenado? nodo))])))
 
-;Definiciones del arbol del ejemplo del taller
-(define nodo-izquierdo  (nodo 3 (nodo 1 (arbol-vacio) (arbol-vacio))    (nodo 6 (nodo 4 (arbol-vacio) (arbol-vacio)) (nodo 7 (arbol-vacio) (arbol-vacio)))))
-(define nodo-derecho  (nodo 10  (arbol-vacio)  (nodo 14 (nodo 13 (arbol-vacio) (arbol-vacio)) (arbol-vacio) )))
+
 
 ;Constructor del arbol
 (define hacer-arbol (lambda (numero nodo1 nodo2)
                       (if (ordenado? (nodo numero nodo1 nodo2)) (nodo numero nodo1 nodo2) (eopl:error "El arbol que intenta crear no es un arbol binario de busqueda" ))))
 
-(define nodo1 (hacer-arbol 8 nodo-izquierdo nodo-derecho))
+
 
 ;Funcion que inserta un numero al arbol binario
 ;numer Lista -> lista
@@ -215,4 +213,20 @@
       )
     )
  
+
+;Pruebas ;nodo1 es el arbol del taller
+(define nodo-izquierdo  (nodo 3 (nodo 1 (arbol-vacio) (arbol-vacio))    (nodo 6 (nodo 4 (arbol-vacio) (arbol-vacio)) (nodo 7 (arbol-vacio) (arbol-vacio)))))
+(define nodo-derecho  (nodo 10  (arbol-vacio)  (nodo 14 (nodo 13 (arbol-vacio) (arbol-vacio)) (arbol-vacio) )))
+(define nodo1 (hacer-arbol 8 nodo-izquierdo nodo-derecho))
+(postorden nodo1)
+(preorden nodo1)
+(inorden nodo1)
+(esta-en-arbol 5 nodo1)
+(insertar 5 nodo1)
+(insertar 3 nodo1)
+(ordenado? nodo1)
+(extraer-nodo-derecho nodo1)
+(extraer-nodo-izquierdo nodo1)
+(arbol-numero nodo1)
+(arbol-hoja? nodo1)
 

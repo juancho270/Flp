@@ -145,3 +145,14 @@
          (esta-en-arbol num (extraer-nodo-izquierdo arbol)))
       (else
          (esta-en-arbol num (extraer-nodo-derecho arbol)))))
+
+;Pruebas ;nodo1 es el arbol del taller
+
+(esta-en-arbol 5 nodo1)
+(insertar 5 nodo1)
+(insertar 3 nodo1)
+(ordenado? nodo1)
+(extraer-nodo-derecho nodo1)
+(extraer-nodo-izquierdo nodo1)
+(arbol-numero nodo1)
+(arbol-hoja? nodo1)

@@ -9,7 +9,9 @@
 ;int lista -> lista
 (define copy
   (lambda (x y)
-    (if (= x 1) (cons y empty) (cons y (copy (- x 1) y )))))
+    (if (number? x)
+    (if (= x 0) empty
+    (if (= x 1) (cons y empty) (cons y (copy (- x 1) y )))) "El primer argumento debe ser un numero")))
 ;---------------------------------------------------------------------------------------------------------------------------------------------------------
 ;Punto 1.2
 
@@ -19,6 +21,7 @@
 
 (define mapping
   (lambda (func l1 l2)
+    (if (procedure? func)
     (local(
             ;Aplica la funcion a un numero y compara el resultado con los elementos de la lista 2 y si son iguales retorna una tupla con el numero y el elemento
             ; de la lista
@@ -33,7 +36,7 @@
             (define cuerpo (lambda (func l1 l2) (cond
                                                   [(empty? l1) empty]
                                                   [else (append (evaluador func (first l1) l2) (cuerpo func (rest l1) l2))]))))
-       (cuerpo func l1 l2))))
+       (cuerpo func l1 l2)) "El primer elemento debe ser una funcion lambda")))
       
 
 ;----------------------------------------------------------------------------------------------------------------------
@@ -64,3 +67,21 @@
 (define x (list 2 4 6))
 (define y (list 4 8))
 (define f (lambda(x) (* x 2)))
+
+
+;Pruebas
+(copy 5 'five)
+(copy 3 (list 1 2 3 4) )
+(copy 0 (list 1 2) )
+(copy 'a (list 1 2) )
+(copy 5 5)
+(mapping (lambda (d) (* d 2)) (list 1 2 3 4) (list 2 4 6) )
+(mapping (lambda (d) (* d 3)) (list 1 2 3 4) (list 2 4 6) )
+(mapping (lambda (d) (* d 2)) (list 1 2 3 4) (list 3 9 12) )
+(mapping 5 (list 1 2 3 4) (list 3 9 12) )
+(mapping (lambda (d) (* d 4)) (list 2 4 6) (list 8 16 24 100 50 12 40 8))
+(product '(1 2 3) '(4 5 6))
+(product '(a b c) '(x y) )
+(list-index number? '(a 2 (1 3) b 7) )
+(list-index symbol? '(a (b c) 17 foo))
+(list-index symbol? '(1 2 (a b) 3) )
